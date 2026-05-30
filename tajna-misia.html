@@ -8,14 +8,14 @@
 <style>
 body{
     margin:0;
-    overflow:hidden;
     background:linear-gradient(135deg,#ff5f8f,#ff9ac2);
     font-family:Arial,sans-serif;
     color:white;
     text-align:center;
+    overflow:hidden;
 }
 
-#intro,#game,#reward,#warning,#final{
+#intro,#reward,#warning,#final{
     display:none;
     height:100vh;
     justify-content:center;
@@ -28,91 +28,90 @@ body{
     display:flex;
 }
 
-button{
-    padding:15px 30px;
-    font-size:22px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-    margin-top:20px;
-}
-
-.heart{
-    position:absolute;
-    font-size:40px;
-    cursor:pointer;
-    user-select:none;
+#game{
+    display:none;
+    height:100vh;
+    position:relative;
 }
 
 #counter{
     position:absolute;
-    top:15px;
-    left:15px;
+    top:20px;
+    left:20px;
     font-size:24px;
     font-weight:bold;
 }
 
-.messageBox{
+.heart{
+    position:absolute;
+    font-size:50px;
+    cursor:pointer;
+}
+
+button{
+    padding:15px 30px;
+    font-size:22px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.box{
     background:rgba(255,255,255,0.15);
-    padding:20px;
+    padding:25px;
     border-radius:20px;
-    max-width:600px;
+    max-width:650px;
 }
 </style>
 </head>
 <body>
 
 <div id="intro" class="active">
-    <h1>❤️ Tajná misia pre Denisa ❤️</h1>
-    <p>Ulov všetkých 11 srdiečok.</p>
-    <button onclick="startGame()">Začať misiu</button>
+<h1>❤️ Tajná misia pre Denisa ❤️</h1>
+<p>Ulov všetkých 11 srdiečok.</p>
+<button onclick="startGame()">Začať misiu</button>
 </div>
 
 <div id="game">
-    <div id="counter">0 / 11 ❤️</div>
+<div id="counter">0 / 11 ❤️</div>
 </div>
 
 <div id="reward">
-    <div class="messageBox">
-        <h2>🎉 Gratulujem!</h2>
-        <p>Podarilo sa ti uloviť všetkých 11 srdiečok. ❤️</p>
-        <p>Úprimne... nečakala som, že budeš až taký tvrdohlavý. 😏</p>
-        <p>Myslím, že si zaslúžiš odmenu.</p>
-        <button onclick="showWarning()">❤️ Prevziať odmenu ❤️</button>
-    </div>
+<div class="box">
+<h2>🎉 Gratulujem!</h2>
+<p>Podarilo sa ti uloviť všetkých 11 srdiečok. ❤️</p>
+<p>Úprimne... nečakala som, že budeš až taký tvrdohlavý. 😏</p>
+<p>Myslím, že si zaslúžiš odmenu.</p>
+<button onclick="showWarning()">❤️ Prevziať odmenu ❤️</button>
+</div>
 </div>
 
 <div id="warning">
-    <div class="messageBox">
-        <h2>⚠️ UPOZORNENIE ⚠️</h2>
-        <p>Nasledujúci obsah môže spôsobiť:</p>
-        <p>❤️ zrýchlený tep</p>
-        <p>❤️ nekontrolovaný úsmev</p>
-        <p>❤️ náhle myslenie na jednu vojačku</p>
-        <p>❤️ a v extrémnych prípadoch aj srdcový infarkt z prebytku pozornosti</p>
-        <p>Pokračuješ na vlastné riziko.</p>
-        <button onclick="showFinal()">⚡ Dať si dávku ⚡</button>
-    </div>
+<div class="box">
+<h2>⚠️ UPOZORNENIE ⚠️</h2>
+<p>Nasledujúci obsah môže spôsobiť:</p>
+<p>❤️ zrýchlený tep</p>
+<p>❤️ nekontrolovaný úsmev</p>
+<p>❤️ náhle myslenie na jednu vojačku</p>
+<p>❤️ a v extrémnych prípadoch aj srdcový infarkt z prebytku pozornosti</p>
+<p>Pokračuješ na vlastné riziko.</p>
+<button onclick="showFinal()">⚡ Dať si dávku ⚡</button>
+</div>
 </div>
 
 <div id="final">
-    <div class="messageBox">
-        <h2>🥤 Energeťák lásky bol úspešne podaný.</h2>
+<div class="box">
+<h2>🥤 Energeťák lásky bol úspešne podaný.</h2>
 
-        <p><strong>📋 Stav pacienta:</strong></p>
+<p>❤️ Tep: zvýšený</p>
+<p>😊 Úsmev: povinný</p>
+<p>🏍️ Túžba po spoločnej jazde: kritická</p>
+<p>🧠 Myšlienky: podozrivo často smerujú na Niku</p>
 
-        <p>❤️ Tep: zvýšený</p>
-        <p>😊 Úsmev: povinný</p>
-        <p>🏍️ Túžba po spoločnej jazde: kritická</p>
-        <p>🧠 Myšlienky: podozrivo často smerujú na Niku</p>
-
-        <br>
-
-        <p><strong>📄 Diagnóza:</strong></p>
-
-        <h3>Je mi ľúto, Denis.</h3>
-        <h2>Už s tým nič neurobíš. 😏❤️</h2>
-    </div>
+<h3>Je mi ľúto, Denis.</h3>
+<h2>Už s tým nič neurobíš. 😏❤️</h2>
+</div>
 </div>
 
 <script>
@@ -134,47 +133,53 @@ const messages = [
 let found = 0;
 
 function startGame(){
-    document.getElementById("intro").classList.remove("active");
-    document.getElementById("game").classList.add("active");
 
-    messages.forEach((msg,index)=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("game").style.display="block";
 
-        const heart=document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="❤️";
+for(let i=0;i<11;i++){
 
-        heart.style.left=Math.random()*(window.innerWidth-80)+"px";
-        heart.style.top=Math.random()*(window.innerHeight-120)+"px";
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
 
-        heart.onclick=function(){
+heart.style.left=Math.random()*(window.innerWidth-100)+"px";
+heart.style.top=Math.random()*(window.innerHeight-100)+"px";
 
-            alert(msg);
+heart.onclick=function(){
 
-            heart.remove();
+alert(messages[i]);
 
-            found++;
+heart.remove();
 
-            document.getElementById("counter").innerHTML =
-            found + " / 11 ❤️";
+found++;
 
-            if(found===11){
-                document.getElementById("game").classList.remove("active");
-                document.getElementById("reward").classList.add("active");
-            }
-        };
+document.getElementById("counter").innerHTML=
+found+" / 11 ❤️";
 
-        document.body.appendChild(heart);
-    });
+if(found===11){
+
+document.getElementById("game").style.display="none";
+document.getElementById("reward").classList.add("active");
+
+}
+
+};
+
+document.getElementById("game").appendChild(heart);
+
+}
+
 }
 
 function showWarning(){
-    document.getElementById("reward").classList.remove("active");
-    document.getElementById("warning").classList.add("active");
+document.getElementById("reward").classList.remove("active");
+document.getElementById("warning").classList.add("active");
 }
 
 function showFinal(){
-    document.getElementById("warning").classList.remove("active");
-    document.getElementById("final").classList.add("active");
+document.getElementById("warning").classList.remove("active");
+document.getElementById("final").classList.add("active");
 }
 
 </script>
