@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre teba ❤️</title>
+
+<style>
+body{
+margin:0;
+background:#111;
+color:white;
+font-family:Arial,sans-serif;
+text-align:center;
+overflow:hidden;
+}
+
+.screen{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.active{
+display:flex;
+}
+
+button{
+padding:15px 30px;
+font-size:22px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+margin:10px;
+}
+
+.startBtn{
+background:#ff4f87;
+color:white;
+}
+
+img{
+max-width:95vw;
+max-height:80vh;
+border-radius:15px;
+box-shadow:0 0 30px rgba(255,255,255,.2);
+}
+
+#yes{
+background:#ff4f87;
+color:white;
+}
+
+#no{
+position:absolute;
+background:white;
+}
+
+h1{
+padding:20px;
+}
+</style>
+</head>
+<body>
+
+<div id="start" class="screen active">
+<h1>💖 Mám pre teba malé prekvapenie 💖</h1>
+<button class="startBtn" onclick="nextImage()">❤️ Klikni sem ❤️</button>
+</div>
+
+<div id="story" class="screen">
+<img id="storyImg" src="">
+<br>
+<button class="startBtn" onclick="nextImage()">➡️ Ďalej</button>
+</div>
+
+<div id="question" class="screen">
+<h1>
+Denis... ❤️<br><br>
+Prijmeš pozvanie na rande?<br>
+24.6.2026
+</h1>
+
+<button id="yes" onclick="yesAnswer()">ÁNO ❤️</button>
+<button id="no">NIE 🤍</button>
+</div>
+
+<div id="final" class="screen">
+<h1>
+❤️ Teším sa na naše rande ❤️<br><br>
+Som rada za teba ❤️<br>
+Usmej sa pre mňa 😊
+</h1>
+</div>
+
+<script>
+
+const images=[
+"1.jpg.png",
+"2.jpg.png",
+"3.jpg.png",
+"4.jpg.png",
+"5.jpg.png",
+"6.jpg.png"
+];
+
+let current=-1;
+
+function nextImage(){
+
+document.getElementById("start").classList.remove("active");
+document.getElementById("story").classList.add("active");
+
+current++;
+
+if(current<images.length){
+document.getElementById("storyImg").src=images[current];
+}else{
+document.getElementById("story").classList.remove("active");
+document.getElementById("question").classList.add("active");
+}
+}
+
+function yesAnswer(){
+document.getElementById("question").classList.remove("active");
+document.getElementById("final").classList.add("active");
+}
+
+const no=document.getElementById("no");
+
+no.addEventListener("mouseover",()=>{
+const x=Math.random()*(window.innerWidth-150);
+const y=Math.random()*(window.innerHeight-100);
+no.style.left=x+"px";
+no.style.top=y+"px";
+});
+
+</script>
+
+</body>
+</html>
