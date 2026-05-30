@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre teba ❤️</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#111;
+font-family:Arial,sans-serif;
+overflow:hidden;
+}
+
+#start{
+text-align:center;
+}
+
+button{
+padding:20px 40px;
+font-size:28px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+background:#ff4f87;
+color:white;
+box-shadow:0 0 25px rgba(255,79,135,.6);
+}
+
+#photo{
+display:none;
+width:100vw;
+height:100vh;
+object-fit:contain;
+background:black;
+}
+
+h1{
+color:white;
+margin-bottom:30px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="start">
+<h1>💖 Mám pre teba malé prekvapenie 💖</h1>
+<button onclick="showPhoto()">❤️ Klikni sem ❤️</button>
+</div>
+
+<img id="photo" src="love-story.jpg">
+
+<script>
+function showPhoto(){
+document.getElementById("start").style.display="none";
+document.getElementById("photo").style.display="block";
+}
+</script>
+
+</body>
+</html>
