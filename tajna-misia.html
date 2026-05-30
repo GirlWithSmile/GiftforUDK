@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tajná misia pre Denisa ❤️</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff5f8f,#ff9ac2);
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+}
+
+#intro,#game,#reward,#warning,#final{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:20px;
+}
+
+.active{
+    display:flex;
+}
+
+button{
+    padding:15px 30px;
+    font-size:22px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.heart{
+    position:absolute;
+    font-size:40px;
+    cursor:pointer;
+    user-select:none;
+}
+
+#counter{
+    position:absolute;
+    top:15px;
+    left:15px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.messageBox{
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:20px;
+    max-width:600px;
+}
+</style>
+</head>
+<body>
+
+<div id="intro" class="active">
+    <h1>❤️ Tajná misia pre Denisa ❤️</h1>
+    <p>Ulov všetkých 11 srdiečok.</p>
+    <button onclick="startGame()">Začať misiu</button>
+</div>
+
+<div id="game">
+    <div id="counter">0 / 11 ❤️</div>
+</div>
+
+<div id="reward">
+    <div class="messageBox">
+        <h2>🎉 Gratulujem!</h2>
+        <p>Podarilo sa ti uloviť všetkých 11 srdiečok. ❤️</p>
+        <p>Úprimne... nečakala som, že budeš až taký tvrdohlavý. 😏</p>
+        <p>Myslím, že si zaslúžiš odmenu.</p>
+        <button onclick="showWarning()">❤️ Prevziať odmenu ❤️</button>
+    </div>
+</div>
+
+<div id="warning">
+    <div class="messageBox">
+        <h2>⚠️ UPOZORNENIE ⚠️</h2>
+        <p>Nasledujúci obsah môže spôsobiť:</p>
+        <p>❤️ zrýchlený tep</p>
+        <p>❤️ nekontrolovaný úsmev</p>
+        <p>❤️ náhle myslenie na jednu vojačku</p>
+        <p>❤️ a v extrémnych prípadoch aj srdcový infarkt z prebytku pozornosti</p>
+        <p>Pokračuješ na vlastné riziko.</p>
+        <button onclick="showFinal()">⚡ Dať si dávku ⚡</button>
+    </div>
+</div>
+
+<div id="final">
+    <div class="messageBox">
+        <h2>🥤 Energeťák lásky bol úspešne podaný.</h2>
+
+        <p><strong>📋 Stav pacienta:</strong></p>
+
+        <p>❤️ Tep: zvýšený</p>
+        <p>😊 Úsmev: povinný</p>
+        <p>🏍️ Túžba po spoločnej jazde: kritická</p>
+        <p>🧠 Myšlienky: podozrivo často smerujú na Niku</p>
+
+        <br>
+
+        <p><strong>📄 Diagnóza:</strong></p>
+
+        <h3>Je mi ľúto, Denis.</h3>
+        <h2>Už s tým nič neurobíš. 😏❤️</h2>
+    </div>
+</div>
+
+<script>
+
+const messages = [
+"❤️ Mám rada tvoj smiech.",
+"❤️ Myslím na teba častejšie, než by som priznala. 😏",
+"❤️ Motorka je super... ale spoločná jazda je lepšia.",
+"❤️ Toto srdiečko ti posiela úsmev. 😊",
+"❤️ Si jeden z dôvodov, prečo sa usmievam.",
+"❤️ Nenápadne som zaklopala na dvere tvojho srdca.",
+"❤️ Niektoré cesty stoja za to len preto, kto ide vedľa teba.",
+"❤️ Tu mala byť múdra veta, ale radšej ti pošlem objatie. 🤗",
+"❤️ Práve si našiel bonusové srdiečko.",
+"❤️ Ešte jedno. Len preto, že si to ty. 😊",
+"💖 Som rada, že si prišiel do môjho života."
+];
+
+let found = 0;
+
+function startGame(){
+    document.getElementById("intro").classList.remove("active");
+    document.getElementById("game").classList.add("active");
+
+    messages.forEach((msg,index)=>{
+
+        const heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+
+        heart.style.left=Math.random()*(window.innerWidth-80)+"px";
+        heart.style.top=Math.random()*(window.innerHeight-120)+"px";
+
+        heart.onclick=function(){
+
+            alert(msg);
+
+            heart.remove();
+
+            found++;
+
+            document.getElementById("counter").innerHTML =
+            found + " / 11 ❤️";
+
+            if(found===11){
+                document.getElementById("game").classList.remove("active");
+                document.getElementById("reward").classList.add("active");
+            }
+        };
+
+        document.body.appendChild(heart);
+    });
+}
+
+function showWarning(){
+    document.getElementById("reward").classList.remove("active");
+    document.getElementById("warning").classList.add("active");
+}
+
+function showFinal(){
+    document.getElementById("warning").classList.remove("active");
+    document.getElementById("final").classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
